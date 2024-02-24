@@ -1,6 +1,9 @@
 <h1>Добро пожаловать в Instapp</h1>
+<% if account_signed_in? %>
 
-<p class="lead">Пожалуйста, зарегистрируйтесь или войдите в свой аккаунт</p>
+<% else %>
+    <p class="lead">Пожалуйста, зарегистрируйтесь или войдите в свой аккаунт</p>
 
-<%= link_to "Sign up", new_account_registration_path, class: "btn btn-success" %>
-<%= link_to "Sign in", new_account_session_path, class: "btn btn-secondary" %>
+    <%= link_to "Sign up", new_account_registration_path, class: "btn btn-success" %>
+    <%= link_to "Sign in", new_account_session_path, class: "btn btn-secondary" %>
+<% end %>

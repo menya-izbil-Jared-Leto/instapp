@@ -2,8 +2,12 @@
   <div class="row">
     <div class="col-8">
         <% @posts.each do |post| %>
-            <div><%= post.account.username %></div>
+          <div class="inst-post">
+            <div class="post-meta">
+              <%= post.account.username %>
+            </div>
             <%= image_tag post.image %>
+          </div>
         <% end %>
     </div>
   </div>

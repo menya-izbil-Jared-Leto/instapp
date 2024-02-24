@@ -62,7 +62,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
-  --bs-body-bg: #fff;
+  --bs-body-bg: #fafafa;
   --bs-border-width: 1px;
   --bs-border-style: solid;
   --bs-border-color: #dee2e6;
@@ -103,6 +103,36 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+/*___*/
+.form-group {
+  margin: 10px;
+}
+
+.profile-pic {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 40%;
+}
+
+.profile-stats{
+  width: 100px;
+  float: left;
+}
+
+.profile-posts img {
+  margin-bottom: 15px;
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  object-position: center;
+  margin-bottom: 20px; 
+  margin-top: 45px;
+}
+/*___*/
 
 hr {
   margin: 1rem 0;
@@ -765,7 +795,7 @@ progress {
 
 .col-8 {
   flex: 0 0 auto;
-  width: 66.66666667%;
+  width: 56.66666667%;
 }
 
 .col-9 {
@@ -7611,7 +7641,7 @@ textarea.form-control-lg {
 }
 
 .mt-5 {
-  margin-top: 3rem !important;
+  margin-top: 1rem !important;
 }
 
 .mt-auto {
