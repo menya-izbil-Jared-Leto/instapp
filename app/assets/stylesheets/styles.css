@@ -106,7 +106,7 @@ body {
 
 /*___*/
 .form-group {
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
 .profile-pic {
@@ -131,6 +131,22 @@ body {
   object-position: center;
   margin-bottom: 20px; 
   margin-top: 45px;
+}
+
+.account-summary {
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+.follower-suggestions {
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.float-right{
+  float: right;
 }
 /*___*/
 
@@ -276,7 +292,7 @@ sup {
 
 a {
   color: var(--bs-link-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: var(--bs-link-hover-color);

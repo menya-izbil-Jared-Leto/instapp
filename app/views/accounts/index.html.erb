@@ -4,11 +4,36 @@
         <% @posts.each do |post| %>
           <div class="inst-post">
             <div class="post-meta">
-              <%= post.account.username %>
+              <% if post.account.image.attached? %>
+                <div class="pp-post"><%= link_to image_tag(post.account.image), profile_path(post.account.username) %></div>
+              <% end %>
+              <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark"%>
             </div>
+
             <%= image_tag post.image %>
+
+            <div class="post-details">
+              <p><strong><%= post.total_likes %> likes</strong></p>
+              <div><strong><%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %></strong></div>
+              
+              <%= simple_format post.description %>
+
+              <div class="text-muted"><%= time_ago_in_words post.created_at %> ago</div>
+            </div>
           </div>
         <% end %>
+    </div>
+    <div class="col-4">
+      <div class="account-summary">
+        <p><%= link_to image_tag(current_account.image, class:"pp-post"), profile_path(current_account.username) %>
+        <strong><%= link_to current_account.username, profile_path(current_account.username), class: "text-dark"%></strong><br /></p>
+        <div><%= current_account.first_name %> <%= current_account.last_name %></div>
+      </div>
+      <div class="follower-suggestions">
+        <%= link_to "See All", "#", class: "float-right" %>
+        <p class="text-muted">Suggestions for you</p>
+      
+      </div>
     </div>
   </div>
 </div>
