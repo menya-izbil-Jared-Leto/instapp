@@ -1,0 +1,18 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const postLikeButtons = document.querySelectorAll(".post-like");
+    
+    postLikeButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            const post_id = button.getAttribute("data-id");
+            
+            fetch(`/post/like/${post_id}`)
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+        });
+    });
+});

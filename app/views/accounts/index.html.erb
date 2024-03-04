@@ -12,8 +12,22 @@
 
             <%= image_tag post.image %>
 
+
             <div class="post-details">
-              <p><strong><%= post.total_likes %> likes</strong></p>
+              <div class="post-actions">
+                
+                <%like = current_account.likes.find_by(post: post)%>
+                <% if like.nil?%>
+                    <%= button_to '<i class="fa-solid fa-heart fa-2x"></i>'.html_safe, likes_path,  params: {like: {post_id:post.id }}, method: :post, class: 'post-like'%>
+                    
+                <%else%>
+                    <%= button_to '<i class="fa-solid fa-heart fa-2x active post-like"></i>'.html_safe, like_path(like), method: :delete, class: 'post-like' %>
+                <%end%>          
+
+                <i class="fa-solid fa-message fa-2x post-comment"></i>
+
+              </div>
+              <p><strong><%= post.likes.count %> likes</strong></p>
               <div><strong><%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %></strong></div>
               
               <%= simple_format post.description %>
