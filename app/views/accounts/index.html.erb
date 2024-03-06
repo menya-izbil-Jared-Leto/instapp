@@ -15,7 +15,7 @@
 
             <div class="post-details">
               <div class="post-actions">
-                
+                <div class="like">
                 <%like = current_account.likes.find_by(post: post)%>
                 <% if like.nil?%>
                     <%= button_to '<i class="fa-solid fa-heart fa-2x"></i>'.html_safe, likes_path,  params: {like: {post_id:post.id }}, method: :post, class: 'post-like'%>
@@ -23,7 +23,7 @@
                 <%else%>
                     <%= button_to '<i class="fa-solid fa-heart fa-2x active post-like"></i>'.html_safe, like_path(like), method: :delete, class: 'post-like' %>
                 <%end%>          
-
+                </div>
                 <i class="fa-solid fa-message fa-2x post-comment"></i>
 
               </div>
@@ -38,15 +38,20 @@
         <% end %>
     </div>
     <div class="col-4">
-      <div class="account-summary">
-        <p><%= link_to image_tag(current_account.image, class:"pp-post"), profile_path(current_account.username) %>
-        <strong><%= link_to current_account.username, profile_path(current_account.username), class: "text-dark"%></strong><br /></p>
-        <div><%= current_account.first_name %> <%= current_account.last_name %></div>
+      <div class="account-summary" style="display: flex; align-items: top;">
+        <p style="margin-right: 10px;">
+          <%= link_to image_tag(current_account.image, class:"pp-summ"), profile_path(current_account.username) %>
+        </p>
+        <div>
+          <strong><%= link_to current_account.username, profile_path(current_account.username), class: "text-dark"%></strong><br />
+          <%= current_account.first_name %> <%= current_account.last_name %>
+        </div>
       </div>
+      
       <div class="follower-suggestions">
         <%= link_to "See All", "#", class: "float-right" %>
         <p class="text-muted">Suggestions for you</p>
-      
+        <%= render "accounts/follower_suggestions" %>
       </div>
     </div>
   </div>

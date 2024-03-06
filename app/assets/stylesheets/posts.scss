@@ -26,6 +26,15 @@
     object-fit: cover;
 }
 
+.pp-summ {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right:3px;
+    object-fit: cover;
+}
+
 .post-details {
     background: #fff;
     padding: 15px;
@@ -36,6 +45,7 @@
 
 .post-actions {
     margin-bottom: 20px;
+    display: flex;
 
     button {
         display: flex;
@@ -59,4 +69,13 @@
     i:hover {
         color: #999;
     }
+}
+
+.like{
+    margin: 0;
+    width: 40px;
+}
+
+.post-comment{
+    padding: auto;
 }

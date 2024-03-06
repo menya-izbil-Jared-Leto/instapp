@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/feed" => "accounts#index"
   get "/profile/:username" => "accounts#profile", as: :profile
   #get "post/like/:post_id" => "likes#save", as: :save_like
+  post "follow/account" => "accounts#follow_account", as: :follow_account
 
   resources :likes, only: [:create, :destroy]
 

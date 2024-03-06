@@ -10,11 +10,12 @@ class Account < ApplicationRecord
   has_many :likes
 
   def total_followers
-    0
+    
+    Follower.where(following_id: self.id).count
   end
 
   def total_following
-    0
+    Follower.where(follower_id: self.id).count
   end
 
 end
