@@ -32,7 +32,21 @@
               
               <%= simple_format post.description %>
 
+              <%= render "posts/comments", post: post %>
+
               <div class="text-muted"><%= time_ago_in_words post.created_at %> ago</div>
+
+            <div class="comment-box">
+              <%= form_for @comment do |f| %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                <div class="input-group">
+                <%= f.text_field :comment, placeholder: "Add comment here...", class: "form-control post-comment" %>
+                  <div class="input-group-append">  
+                    <%= f.submit "Post", class: "btn btn-light float-right", style: "margin-left: 1px; border-radius: 0px;"%>
+                  </div>
+                </div>
+              <% end %>
+            </div>
             </div>
           </div>
         <% end %>

@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
     #Feed
     def index
         @posts = Post.all
+        @comment = Comment.new
 
         following_ids = Follower.where(follower_id: current_account.id).map(&:following_id)
         following_ids << current_account.id

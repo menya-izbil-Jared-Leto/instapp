@@ -79,3 +79,14 @@
 .post-comment{
     padding: auto;
 }
+
+.comment-box{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #fff;
+    border: none;
+}
+
+.post-comment:focus{
+    box-shadow: none !important;
+}
