@@ -26,8 +26,19 @@ class AccountsController < ApplicationController
             flash[:danger] = "Something wrong"
         end
 
-        redirect_to feed_path
+        redirect_to profile_path(Account.find(follower_id).username)
     end
+
+    def unfollow
+        follow = Follower.find_by(follower_id: current_account.id, following_id: params[:id])
+        if follow
+          follow.destroy
+          flash[:success] = "You have unfollowed the user"
+        else
+          flash[:danger] = "Something went wrong"
+        end
+        redirect_to profile_path(Account.find(params[:id]).username)
+    end      
 
     def set_account
         @account = Account.find_by_username(params[:username])

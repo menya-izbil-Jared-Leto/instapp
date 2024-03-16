@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!
+  before_action :set_post, only: [:show]
   
   def new
     @post = Post.new
@@ -12,16 +13,21 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to feed_path, flash: { success: "Post was created"}
     else
-      render 'new', flash: { danger: "Post was not created"}
+      redirect_to new_post_path, flash: { danger: "Post was not created"}
       puts @post.errors.full_messages
     end
   end
 
   def show
-      @posts = Post.all
+    @comment = Comment.new
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id]) if params[:id].present?
+  end
+
   def post_params
     params.require(:post).permit(:description, :caption, :image)
   end

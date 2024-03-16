@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create]
 
+  resources :accounts do
+    post 'unfollow', on: :member
+  end
+
   root to: "home#homepage"
 
   resources :posts

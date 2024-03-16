@@ -1,1 +1,55 @@
-idk
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+        <div class="inst-post float-right", style="height:666px; width:666px;">
+          <%= image_tag @post.image if @post.image.present? %>
+        </div>
+    </div>
+
+  <div class="col-4">
+        <div class="post-meta">
+              <%= link_to profile_picture(@post.account, 'pp-post'), profile_path(@post.account.username) %>
+              <%= link_to @post.account.username, profile_path(@post.account.username), class: "text-dark"%>
+        </div>
+
+        <div class="post-details">
+              <div class="post-actions">
+                <div class="like">
+                <%like = current_account.likes.find_by(post: @post)%>
+                <% if like.nil?%>
+                    <%= button_to '<i class="fa-solid fa-heart fa-2x"></i>'.html_safe, likes_path,  params: {like: {post_id:@post.id }}, method: :post, class: 'post-like'%>
+                    
+                <%else%>
+                    <%= button_to '<i class="fa-solid fa-heart fa-2x active post-like"></i>'.html_safe, like_path(like), method: :delete, class: 'post-like' %>
+                <%end%>          
+                </div>
+                <i class="fa-solid fa-message fa-2x post-comment"></i>
+
+              </div>
+              <p><strong><%= @post.likes.count %> likes</strong></p>
+              <div><strong><%= link_to @post.account.username, profile_path(@post.account.username), class: "text-dark" %></strong></div>
+              
+              <%= simple_format @post.description %>
+
+              <div class="comments-feed">
+                <%= render "posts/comments", post: @post %>
+              </div>
+
+              <div class="text-muted"><%= time_ago_in_words @post.created_at %> ago</div>
+
+            <div class="comment-box">
+              <%= form_for @comment do |f| %>
+                <%= f.hidden_field :post_id, value: @post.id %>
+                <%= f.hidden_field :return_to, value: "post" %>
+                <div class="input-group">
+                <%= f.text_field :comment, placeholder: "Add comment here...", class: "form-control post-comment" %>
+                  <div class="input-group-append">  
+                    <%= f.submit "Post", class: "btn btn-light float-right", style: "margin-left: 1px; border-radius: 0px;"%>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+    </div>
+  </div>
+</div>

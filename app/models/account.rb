@@ -18,4 +18,8 @@ class Account < ApplicationRecord
     Follower.where(follower_id: self.id).count
   end
 
+  def following?(other_account)
+    Follower.exists?(follower_id: self.id, following_id: other_account.id)
+  end
+
 end

@@ -5,6 +5,14 @@
     object-position: center; 
 }
 
+.profile-pics {
+    width: 400px; 
+    height: 400px; 
+    object-fit: cover; 
+    object-position: center; 
+    margin-bottom: 20px;
+}
+
 .post-meta {
     display: flex;
     justify-content: left;
@@ -78,15 +86,20 @@
 
 .post-comment{
     padding: auto;
+    margin-left: 10px;
 }
 
 .comment-box{
     padding-top: 15px;
-    padding-bottom: 15px;
     background: #fff;
     border: none;
 }
 
 .post-comment:focus{
     box-shadow: none !important;
+}
+
+.comments-feed{
+    height: 100px;
+    overflow: auto;
 }

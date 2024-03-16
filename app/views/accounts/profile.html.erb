@@ -6,13 +6,26 @@
         <div class="col-8 text-left">
             <h1><%= @account.username %></h1>
             <h6 class="text-muted", style="font-weight: normal;"><%= @account.first_name %> <%= @account.last_name %></h6>
-             
-            <%= link_to '<i class="fa-solid fa-pen"></i>'.html_safe, edit_account_registration_path, class: "btn btn-secondary" if can_edit_profile(@account.id) %>
+            
 
 
             <div class="profile-stats"><%= @account.posts.count %> posts</div>
             <div class="profile-stats"><%= @account.total_followers %> followers </div>
             <div class="profile-stats"><%= @account.total_following %> following </div>
+
+            <% if can_edit_profile(@account.id) %>
+                <%= link_to '<i class="fa-solid fa-pen"></i>'.html_safe, edit_account_registration_path, class: "btn btn-secondary" %>
+            <% elsif current_account.following?(@account) %>
+                <%= form_tag unfollow_account_path(@account), method: :post do %>
+                    <%= hidden_field_tag :follow_id, @account.id %>
+                    <%= submit_tag "Unfollow", class: "btn btn-danger btn-sm" %>
+            <% end %>
+                <% else %>
+                    <%= form_tag follow_account_path(@account), method: :post do %>
+                        <%= hidden_field_tag :follow_id, @account.id %>
+                        <%= submit_tag "Follow", class: "btn btn-info btn-sm" %>
+                <% end %>
+            <% end %>
 
             <p><%= simple_format @account.description %></p>
             <% if @account.website.present? %>
@@ -20,11 +33,11 @@
             <% end %>
         </div>
     </div>
-    <div class="row">
+    <div class="row profile-posts">
             <% @posts.each do |post| %>
              <div class="col-4">
-              <div class="profile-posts">
-                    <%= image_tag post.image %>
+              <div class="profile-pics">
+                    <%= link_to image_tag(post.image), post_path(post) %>
               </div>
              </div> 
             <% end %>
