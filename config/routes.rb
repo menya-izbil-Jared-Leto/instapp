@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   root to: "home#homepage"
 
+  get '/followers/:username', to: 'accounts#followers', as: 'followers'
+  get '/following/:username', to: 'accounts#following', as: 'following'
+
   resources :posts
   get 'posts/new'
   get 'posts/edit'

@@ -2,7 +2,6 @@ class AccountsController < ApplicationController
     before_action :authenticate_account! 
     before_action :set_account, only: [:profile] 
 
-    #Feed
     def index
         @posts = Post.all
         @comment = Comment.new
@@ -13,9 +12,18 @@ class AccountsController < ApplicationController
         @follower_suggestions = Account.where.not(id: following_ids)
     end
 
-    #Profile
     def profile
         @posts = @account.posts
+    end
+
+    def followers
+        @account = Account.find_by_username(params[:username])
+        @followers = @account.followers
+    end
+
+    def following
+        @account = Account.find_by_username(params[:username])
+        @following = @account.following
     end
 
     def follow_account

@@ -1,0 +1,13 @@
+<h2>Followers</h2>
+<ul>
+  <% @followers.each do |follower| %>
+    <div class="follows">
+        <div class="row">
+            <div class="col-sm-3 col-lg-2">
+                <%= link_to profile_picture(follower, 'pp-post'), profile_path(follower.username) %>
+                <strong><%= link_to follower.username, profile_path(follower.username), class: "text-dark"%></strong>
+            </div>
+        </div>
+    </div>
+  <% end %>
+</ul>

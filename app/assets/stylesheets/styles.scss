@@ -148,6 +148,30 @@ body {
 .float-right{
   float: right;
 }
+
+.follows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.follows .row {
+  width: 100%;
+  margin: 0;
+}
+
+.follows .col-sm-3 {
+  flex: 0 0 auto;
+}
+
+.follows .col-sm-9 {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 /*___*/
 
 hr {

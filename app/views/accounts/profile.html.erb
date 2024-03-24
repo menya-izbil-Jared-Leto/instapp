@@ -7,11 +7,15 @@
             <h1><%= @account.username %></h1>
             <h6 class="text-muted", style="font-weight: normal;"><%= @account.first_name %> <%= @account.last_name %></h6>
             
-
-
             <div class="profile-stats"><%= @account.posts.count %> posts</div>
-            <div class="profile-stats"><%= @account.total_followers %> followers </div>
-            <div class="profile-stats"><%= @account.total_following %> following </div>
+
+            <div class="profile-stats">
+                <%= link_to "#{@account.total_followers} followers", followers_path(@account.username), class: "text-dark" %>
+            </div>
+
+            <div class="profile-stats">
+                <%= link_to "#{@account.total_following} following", following_path(@account.username), class: "text-dark" %>
+            </div>
 
             <% if can_edit_profile(@account.id) %>
                 <%= link_to '<i class="fa-solid fa-pen"></i>'.html_safe, edit_account_registration_path, class: "btn btn-secondary" %>
@@ -33,6 +37,7 @@
             <% end %>
         </div>
     </div>
+
     <div class="row profile-posts">
             <% @posts.each do |post| %>
              <div class="col-4">
