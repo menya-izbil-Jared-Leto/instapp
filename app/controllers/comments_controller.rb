@@ -21,6 +21,21 @@ class CommentsController < ApplicationController
     def show
         @posts = Post.all
     end
+
+    def destroy
+      @comment = Comment.find(params[:id])
+      if @comment.account_id == current_account.id
+        if @comment.destroy
+          redirect_to post_path(@comment.post_id), flash: { success: "Комментарий успешно удален" }
+        else
+          redirect_to post_path(@comment.post_id), flash: { danger: "Не удалось удалить комментарий" }
+        end
+      else
+        redirect_to post_path(@comment.post_id), flash: { danger: "Вы не можете удалить чужой комментарий" }
+      end
+    end
+    
+    
   
     private
     def comment_params

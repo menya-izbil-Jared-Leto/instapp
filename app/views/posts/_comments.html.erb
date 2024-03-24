@@ -1,6 +1,9 @@
 <% post.comments.each do |comment| %>
     <div class="comment">
-        <strong><%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %></strong>
+        <% if comment.account_id == current_account.id %>
+            <%= button_to '<i class="fa-regular fa-trash-can"></i>'.html_safe, comment_path(comment), method: :delete, data: { confirm: "Вы уверены, что хотите удалить этот комментарий?" }, class:"float-right", style: "border: none;" %>
+        <% end %>
+        <strong><%= link_to comment.account.username, profile_path(post.account.username), class: "text-dark" %></strong>
         <%= comment.comment %>
         <p class="text-muted"><%= time_ago_in_words comment.created_at %> ago</p>
     </div>

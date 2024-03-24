@@ -1,0 +1,16 @@
+<h2>Edit post</h2>
+
+<%= form_for @post, html: { multipart: true } do |f| %>
+  <p>
+    <%= f.label :image %> <br>
+    <%= f.file_field :image %>
+  </p>
+  <div class="form-group">
+    <%= f.label :description%>
+    <%= f.text_area :description, class: "form-control", style:"width: 525.6px;"%>
+  </div>
+
+  <p>
+    <%= f.submit "Update", class: "btn btn-success" %>
+  </p>
+<% end %>

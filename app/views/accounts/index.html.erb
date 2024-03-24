@@ -4,7 +4,7 @@
         <% @posts.each do |post| %>
           <div class="inst-post">
             <div class="post-meta">
-                <div class="pp-post"><%= link_to profile_picture(post.account, 'pp-post'), profile_path(post.account.username) %></div>
+              <div class="pp-post"><%= link_to profile_picture(post.account, 'pp-post'), profile_path(post.account.username) %></div>
               <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark"%>
             </div>
 

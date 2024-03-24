@@ -25,6 +25,10 @@
                 </div>
                 <i class="fa-solid fa-message fa-2x post-comment"></i>
 
+                <% if @post.account_id == current_account.id%>
+                  <div class="edit-post"><%= link_to '<i class="fa-regular fa-pen-to-square fa-2x"></i>'.html_safe, edit_post_path %></div>
+                <%end%>
+
               </div>
               <p><strong><%= @post.likes.count %> likes</strong></p>
               <div><strong><%= link_to @post.account.username, profile_path(@post.account.username), class: "text-dark" %></strong></div>

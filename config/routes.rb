@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post "follow/account" => "accounts#follow_account", as: :follow_account
 
   resources :likes, only: [:create, :destroy]
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :destroy]
 
   resources :accounts do
     post 'unfollow', on: :member
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :posts
   get 'posts/new'
+  get 'posts/edit'
   get 'posts/index'
   get 'posts/feed'
 
