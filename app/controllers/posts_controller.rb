@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_account!
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   def new
     @post = Post.new
@@ -35,6 +35,20 @@ class PostsController < ApplicationController
       render 'edit'
     end
   end
+
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.account_id == current_account.id
+      if @post.destroy
+        redirect_to feed_path, flash: { success: "Deleted" }
+      else
+        redirect_to post_path(@post), flash: { danger: "Error" }
+      end
+    else
+      redirect_to feed_path, flash: { danger: "Wrong post" }
+    end
+  end
+  
 
   private
 

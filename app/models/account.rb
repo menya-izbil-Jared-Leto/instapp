@@ -4,10 +4,20 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :username, :first_name, presence: true
+
   has_one_attached :image
   
   has_many :posts
   has_many :likes
+
+  def self.search(search)
+    if search
+      where("username LIKE ?", "%#{search}%")
+    else
+      all
+    end
+  end
 
   def followers
     follower_ids = Follower.where(following_id: self.id).pluck(:follower_id)

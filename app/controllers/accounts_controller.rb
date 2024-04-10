@@ -3,13 +3,16 @@ class AccountsController < ApplicationController
     before_action :set_account, only: [:profile] 
 
     def index
-        @posts = Post.all
-        @comment = Comment.new
-
-        following_ids = Follower.where(follower_id: current_account.id).map(&:following_id)
+        following_ids = current_account.following.map(&:id)
         following_ids << current_account.id
-        
+        @posts = Post.where(account_id: following_ids)
+        @comment = Comment.new
+    
         @follower_suggestions = Account.where.not(id: following_ids)
+    end
+
+    def search
+        @accounts = Account.search(params[:search])
     end
 
     def profile

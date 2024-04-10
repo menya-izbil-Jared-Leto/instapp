@@ -29,6 +29,10 @@
                   <div class="edit-post"><%= link_to '<i class="fa-regular fa-pen-to-square fa-2x"></i>'.html_safe, edit_post_path %></div>
                 <%end%>
 
+                <% if @post.account_id == current_account.id %>            
+                  <%= button_to '<i class="fa-regular fa-trash-can fa-2x edit-post"></i>'.html_safe, post_path(@post), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" } %>
+                <% end %>
+
               </div>
               <p><strong><%= @post.likes.count %> likes</strong></p>
               <div><strong><%= link_to @post.account.username, profile_path(@post.account.username), class: "text-dark" %></strong></div>

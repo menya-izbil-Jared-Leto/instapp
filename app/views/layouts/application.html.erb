@@ -31,6 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <% if account_signed_in? %>
+                          <%= form_with(url: search_path, method: :get, local: true) do |form| %>
+                            <%= form.text_field :search, value: params[:search] %>
+                                <%= form.submit "Search", class: "btn btn-light float-right", style: "margin-left: 1px; border-radius: 0px;"%>
+                          <% end %>
                           <li class="nav-item active">
                             <%= link_to "Feed", feed_path, class: "nav-link" %>
                           </li>

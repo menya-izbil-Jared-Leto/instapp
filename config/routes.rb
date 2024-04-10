@@ -18,13 +18,16 @@ Rails.application.routes.draw do
 
   root to: "home#homepage"
 
+  get 'search', to: 'accounts#search'
   get '/followers/:username', to: 'accounts#followers', as: 'followers'
   get '/following/:username', to: 'accounts#following', as: 'following'
 
-  resources :posts
-  get 'posts/new'
-  get 'posts/edit'
-  get 'posts/index'
-  get 'posts/feed'
+  resources :posts do
+    get 'feed', on: :collection
+    member do
+      delete :destroy
+    end
+  end
+  
 
 end
