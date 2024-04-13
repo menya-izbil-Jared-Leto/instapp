@@ -30,11 +30,13 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="search-box">
                         <% if account_signed_in? %>
                           <%= form_with(url: search_path, method: :get, local: true) do |form| %>
-                            <%= form.text_field :search, value: params[:search] %>
-                                <%= form.submit "Search", class: "btn btn-light float-right", style: "margin-left: 1px; border-radius: 0px;"%>
+                            <%= form.text_field :search, value: params[:search], class: "post-comment", style: "margin-left: 1px; border-radius: 10px; border: 1px solid #ced4da; padding: 0.375rem 0.75rem;" %>
+                            <%= form.submit "Search", class: "btn btn-light float-right", style: "margin-left: 1px; border-radius: none;"%>
                           <% end %>
+                          </li>
                           <li class="nav-item active">
                             <%= link_to "Feed", feed_path, class: "nav-link" %>
                           </li>

@@ -22,6 +22,9 @@ development:
 test:
   <<: *default
   database: inst_test
+  username: inst_db_admin
+  password: inst_db_pas
+  host: localhost
 
 production:
   <<: *default

@@ -8,8 +8,8 @@ class Account < ApplicationRecord
 
   has_one_attached :image
   
-  has_many :posts
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def self.search(search)
     if search
@@ -39,6 +39,16 @@ class Account < ApplicationRecord
 
   def following?(other_account)
     Follower.exists?(follower_id: self.id, following_id: other_account.id)
+  end
+  
+  before_destroy :remove_followers_and_comments
+
+  private
+
+  def remove_followers_and_comments
+    Follower.where(follower_id: self.id).delete_all
+    Follower.where(following_id: self.id).delete_all
+    Comment.where(account_id: self.id).delete_all
   end
 
 end
