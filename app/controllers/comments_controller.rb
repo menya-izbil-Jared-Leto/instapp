@@ -26,18 +26,15 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
       if @comment.account_id == current_account.id
         if @comment.destroy
-          redirect_to post_path(@comment.post_id), flash: { success: "Комментарий успешно удален" }
+          redirect_to post_path(@comment.post_id), flash: { success: "Deleted" }
         else
-          redirect_to post_path(@comment.post_id), flash: { danger: "Не удалось удалить комментарий" }
+          redirect_to post_path(@comment.post_id), flash: { danger: "Error" }
         end
       else
-        redirect_to post_path(@comment.post_id), flash: { danger: "Вы не можете удалить чужой комментарий" }
+        redirect_to post_path(@comment.post_id), flash: { danger: "Wrong comment" }
       end
     end
     
-    
-    
-  
     private
     def comment_params
       params.require(:comment).permit(:comment, :post_id, :return_to)

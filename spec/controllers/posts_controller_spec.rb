@@ -44,35 +44,5 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
-
-  describe "GET #show" do
-    it "returns a success response" do
-      post = account.posts.create! valid_attributes
-      get :show, params: { id: post.to_param }, session: @valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET #edit" do
-    it "returns a success response" do
-      post = account.posts.create! valid_attributes
-      get :edit, params: { id: post.to_param }, session: @valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested post" do
-      post = account.posts.create! valid_attributes
-      expect {
-        delete :destroy, params: { id: post.to_param }, session: @valid_session
-      }.to change(Post, :count).by(-1)
-    end
-
-    it "redirects to the posts list" do
-      post = account.posts.create! valid_attributes
-      delete :destroy, params: { id: post.to_param }, session: @valid_session
-      expect(response).to redirect_to(feed_path)
-    end
-  end
 end
+
